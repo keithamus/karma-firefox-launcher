@@ -146,6 +146,18 @@ FirefoxBrowser.prototype = {
 
 FirefoxBrowser.$inject = ['id', 'baseBrowserDecorator', 'args']
 
+var FirefoxHeadlessBrowser = function () {
+  FirefoxBrowser.apply(this, arguments)
+}
+
+FirefoxHeadlessBrowser.prototype = {
+  _execCommand: function (command, args) {
+    return FirefoxBrowser.prototype._execCommand.call(command, args.concat('-headless'))
+  }
+}
+
+FirefoxHeadlessBrowser.$inject = ['id', 'baseBrowserDecorator', 'args']
+
 var FirefoxDeveloperBrowser = function () {
   FirefoxBrowser.apply(this, arguments)
 }
@@ -162,6 +174,18 @@ FirefoxDeveloperBrowser.prototype = {
 
 FirefoxDeveloperBrowser.$inject = ['id', 'baseBrowserDecorator', 'args']
 
+var FirefoxDeveloperHeadlessBrowser = function () {
+  FirefoxDeveloperBrowser.apply(this, arguments)
+}
+
+FirefoxDeveloperHeadlessBrowser.prototype = {
+  _execCommand: function (command, args) {
+    return FirefoxDeveloperBrowser.prototype._execCommand.call(command, args.concat('-headless'))
+  }
+}
+
+FirefoxDeveloperHeadlessBrowser.$inject = ['id', 'baseBrowserDecorator', 'args']
+
 var FirefoxAuroraBrowser = function () {
   FirefoxBrowser.apply(this, arguments)
 }
@@ -177,6 +201,18 @@ FirefoxAuroraBrowser.prototype = {
 }
 
 FirefoxAuroraBrowser.$inject = ['id', 'baseBrowserDecorator', 'args']
+
+var FirefoxAuroraHeadlessBrowser = function () {
+  FirefoxAuroraBrowser.apply(this, arguments)
+}
+
+FirefoxAuroraHeadlessBrowser.prototype = {
+  _execCommand: function (command, args) {
+    return FirefoxAuroraBrowser.prototype._execCommand.call(command, args.concat('-headless'))
+  }
+}
+
+FirefoxAuroraHeadlessBrowser.$inject = ['id', 'baseBrowserDecorator', 'args']
 
 var FirefoxNightlyBrowser = function () {
   FirefoxBrowser.apply(this, arguments)
@@ -195,9 +231,22 @@ FirefoxNightlyBrowser.prototype = {
 
 FirefoxNightlyBrowser.$inject = ['id', 'baseBrowserDecorator', 'args']
 
+var FirefoxNightlyHeadlessBrowser = function () {
+  FirefoxNightlyBrowser.apply(this, arguments)
+}
+
+FirefoxNightlyHeadlessBrowser.prototype = {
+  _execCommand: function (command, args) {
+    return FirefoxNightlyBrowser.prototype._execCommand.call(command, args.concat('-headless'))
+  }
+}
+
+FirefoxNightlyHeadlessBrowser.$inject = ['id', 'baseBrowserDecorator', 'args']
+
 // PUBLISH DI MODULE
 module.exports = {
   'launcher:Firefox': ['type', FirefoxBrowser],
+  'launcher:FirefoxHeadless': ['type', FirefoxHeadlessBrowser],
   'launcher:FirefoxDeveloper': ['type', FirefoxDeveloperBrowser],
   'launcher:FirefoxAurora': ['type', FirefoxAuroraBrowser],
   'launcher:FirefoxNightly': ['type', FirefoxNightlyBrowser]
